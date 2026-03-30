@@ -21,12 +21,14 @@ An end-to-end, multi-agent AI system designed to handle customer support tickets
 
 ##  Project Structure
 
-ticket-main/
-├── agent.py               # Core LangGraph state-machine and agent definitions
-├── ingest.py              # FastAPI server connecting to live store & web search
-├── requirements.txt       # Python dependencies
-├── .env                   # Environment variables (git-ignored)
-└── README.md              # Project documentation
+| File / Directory | Description |
+| :--- | :--- |
+| **`ticket-main/`** | **Root directory of the project** |
+| `agent.py` | Core LangGraph state-machine and agent definitions |
+| `ingest.py` | FastAPI server connecting to live store & web search |
+| `requirements.txt` | Python dependencies |
+| `.env` | Environment variables (git-ignored) |
+| `README.md` | Project documentation |
 
 
 ## 🧠 Architecture Overview
