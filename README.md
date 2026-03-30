@@ -23,3 +23,9 @@ graph TD
     D --> E[Writer Agent]
     E --> F{Compliance Auditor}
 
+## ✨ Key Features
+
+* **Multi-Agent Orchestration:** Utilizes LangGraph for a robust state machine consisting of specialized Triage, Retriever, Writer, and Compliance agents handling isolated tasks to improve accuracy.
+* **RAG-Powered Policy Engine:** Uses ChromaDB and HuggingFace embeddings to ground AI decisions in actual company policy, preventing hallucinations.
+* **Strict Compliance Guardrails:** An adversarial compliance agent audits all outgoing drafts. If a draft promises unauthorized exceptions, it is rejected and re-routed for a rewrite.
+* **Live Store Integration:** Includes an ingestion/chat API built with FastAPI that connects to a live Node.js backend to fetch real-time product inventory and pricing.
