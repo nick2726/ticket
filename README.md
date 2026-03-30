@@ -5,7 +5,6 @@
 An end-to-end, multi-agent AI system designed to handle customer support tickets and act as an intelligent e-commerce assistant. Using LangGraph, the system intelligently triages requests, retrieves relevant store policies via RAG, drafts compliance-checked responses, and ensures zero-hallucination policy enforcement—escalating to a human agent only when exactly necessary.
 
 
-
 ##  Key Features
 * **Multi-Agent Orchestration:** Utilizes LangGraph for a robust state machine consisting of specialized Triage, Retriever, Writer, and Compliance agents handling isolated tasks to improve accuracy.
 * **RAG-Powered Policy Engine:** Uses ChromaDB and HuggingFace embeddings to ground AI decisions in actual company policy, preventing hallucinations.
