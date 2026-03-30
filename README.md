@@ -1,5 +1,8 @@
-# Ticket Resolution System
+# 🚀 JARVIS: Multi-Agent Support 
 
+![Python](https://img.shields.io/badge/Python-3.9+-blue.svg) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi) ![LangGraph](https://img.shields.io/badge/LangGraph-Multi--Agent-orange) ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_Store-4B32C3) ![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-black)
+
+An end-to-end, multi-agent AI system designed to automate customer support triage, enforce strict company policies via RAG, and act as an intelligent e-commerce assistant. Built for reliability, this system ensures zero-hallucination policy enforcement and knows exactly when to escalate to a human.
 This repository contains an end-to-end multi-agent AI system designed to handle customer support tickets. Using LangGraph, the system intelligently triages requests, retrieves relevant store policies, drafts compliance-checked responses, and knows when to escalate to a human agent.
 
 ## Features
@@ -28,11 +31,7 @@ The system was evaluated against three distinct edge cases: standard exceptions 
 In the next iteration, I would implement **Human-in-the-Loop (HITL) interrupt functionality** via LangGraph's native breakpoint features, allowing human supervisors to manually approve rewrites for high-value tickets. Furthermore, I would expand the vector retrieval to use Hybrid Search (BM25 + Dense Embeddings) to improve policy matching for highly specific SKU queries.
 
 
-# 🚀 JARVIS: Multi-Agent Support 
 
-![Python](https://img.shields.io/badge/Python-3.9+-blue.svg) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi) ![LangGraph](https://img.shields.io/badge/LangGraph-Multi--Agent-orange) ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_Store-4B32C3) ![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-black)
-
-An end-to-end, multi-agent AI system designed to automate customer support triage, enforce strict company policies via RAG, and act as an intelligent e-commerce assistant. Built for reliability, this system ensures zero-hallucination policy enforcement and knows exactly when to escalate to a human.
 
 ## 🧠 Architecture Overview
 
