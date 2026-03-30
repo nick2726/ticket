@@ -23,7 +23,7 @@ graph TD
     D --> E[Writer Agent]
     E --> F{Compliance Auditor}
 
-    🛠️ Setup & Installation
+🛠️ Setup & Installation
 1. Clone the repository
 
 Bash
