@@ -19,6 +19,15 @@ An end-to-end, multi-agent AI system designed to handle customer support tickets
 
 ---
 
+##  Project Structure
+
+ticket-main/
+├── agent.py               # Core LangGraph state-machine and agent definitions
+├── ingest.py              # FastAPI server connecting to live store & web search
+├── requirements.txt       # Python dependencies
+├── .env                   # Environment variables (git-ignored)
+└── README.md              # Project documentation
+
 
 ## 🧠 Architecture Overview
 
@@ -42,6 +51,7 @@ graph TD
 * **RAG-Powered Policy Engine:** Uses ChromaDB and HuggingFace embeddings to ground AI decisions in actual company policy, preventing hallucinations.
 * **Strict Compliance Guardrails:** An adversarial compliance agent audits all outgoing drafts. If a draft promises unauthorized exceptions, it is rejected and re-routed for a rewrite.
 * **Live Store Integration:** Includes an ingestion/chat API built with FastAPI that connects to live Node.js backends to fetch real-time product inventory and pricing.
+* 
 
 * ## 🛠️ Setup & Installation
 
