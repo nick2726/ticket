@@ -47,3 +47,69 @@ graph TD
     F -- Hallucination / Policy Breach --> E
     F -- Out-of-Policy Demand --> G[Escalate to Human]
     F -- 100% Compliant --> H[Final Customer Response]
+
+
+    ✨ Key Features
+Multi-Agent Orchestration: Specialized agents (Triage, Retriever, Writer, Compliance) handle isolated tasks to improve accuracy.
+
+Strict Compliance Guardrails: An adversarial compliance agent audits all outgoing drafts. If a draft promises unauthorized exceptions, it is rejected and re-routed for a rewrite.
+
+Live Store Integration: The FastAPI ingest.py service connects to a live Node.js backend to fetch real-time product inventory and pricing.
+
+Web Search Fallback: Uses DuckDuckGoSearchRun to find technical specifications for items not strictly detailed in the store database.
+
+🛠️ Setup & Installation
+1. Clone the repository
+
+Bash
+git clone <your-repo-link>
+cd ticket-main
+2. Install dependencies
+
+Bash
+pip install -r requirements.txt
+3. Environment Variables
+Create a .env file in the root directory:
+
+Code snippet
+GROQ_API_KEY=your_api_key_here
+🚀 Running the System
+Run the LangGraph Support Agent Evaluation:
+Tests the multi-agent graph against 3 core scenarios: standard exceptions, hostile escalations, and missing data.
+
+Bash
+python agent.py
+Run the JARVIS E-Commerce Assistant API:
+Spins up the FastAPI server on http://127.0.0.1:5000.
+
+Bash
+uvicorn ingest:app --host 127.0.0.1 --port 5000
+
+---
+
+### 2. The Refined 1-Page Write-Up
+*Save this as a PDF or Markdown file (e.g., `Architecture_WriteUp.md`) to include with your submission.*
+
+```markdown
+# Engineering Write-Up: Multi-Agent Resolution System
+
+### Architecture & Philosophy
+The system is built on a state-machine architecture using **LangGraph**, deliberately moving away from naive zero-shot prompting to a deterministic, node-based workflow. By dividing the resolution process into isolated, specialized agents (Triage, Retrieval, Writing, Compliance), the system significantly reduces hallucinations and ensures strict adherence to company guidelines. 
+
+The application utilizes **Groq** to power the Llama 3 models, specifically leveraging `llama-3.3-70b-versatile` for deep reasoning in the support graph and `llama-3.1-8b-instant` for low-latency tool calling in the live ingest API.
+
+### Agent Responsibilities
+1. **Triage Agent (Gatekeeper):** Parses the order JSON. If critical fields (`item_category`, `order_status`) are missing, it halts the graph entirely (routing to `END`) to ask clarifying questions, preventing the system from guessing.
+2. **Retriever Agent (RAG Engine):** Uses `HuggingFaceEmbeddings` (`all-MiniLM-L6-v2`) and ChromaDB to fetch the top 3 relevant policy chunks based on the combined ticket and order context.
+3. **Writer Agent (Drafter):** Formulates the customer response and decision rationale. It is strictly prompted to include exact citation chunks (e.g., `[Doc: X | Chunk: Y]`).
+4. **Compliance Agent (Auditor):** An adversarial node that reviews the draft against the retrieved context. It catches out-of-policy promises or unauthorized escalations. If it fails the draft, it loops back to the Writer for a rewrite (capped at 3 loops to prevent infinite recursion).
+
+### Evaluation Summary & Edge Cases Handled
+The system was evaluated against three distinct failure modes:
+* **Perishable Exception:** Correctly identifies a melted item, successfully denies the standard return based on the retrieved perishable policy, and cites the specific rule.
+* **Hostile Out-of-Policy Demand:** Rejects a 30+ day return demand from an "influencer." The Compliance agent catches the pressure and flags `escalate: True`.
+* **Missing Data Abstention:** Successfully halts execution when the order status is missing, returning a clarifying question instead of hallucinating an answer.
+
+### Next Steps & Improvements
+1. **Hybrid Retrieval:** Upgrade the ChromaDB dense retriever to a Hybrid Search (Dense + BM25) to better handle exact SKU matches or specific policy ID numbers.
+2. **Human-in-the-Loop (HITL):** Implement LangGraph's native breakpoint features
